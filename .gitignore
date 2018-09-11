@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/packages
+/ProcessingClaim.DAL/bin/Debug
+/.vs
+/ProcessingClaim/.vs
+/ProcessingClaim.Web/bin
+/ProcessingClaim.Web/obj/Debug
+/ProcessingClaim.DAL/obj/Debug

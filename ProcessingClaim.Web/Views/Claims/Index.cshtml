@@ -1,0 +1,80 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<ProcessingClaim.DAL.Models.Claim>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.Label("Title")
+        </th>
+        <th>
+            @Html.Label("FIO")
+        </th>
+        <th>
+            @Html.Label("PhoneNumber")
+        </th>
+        <th>
+            @Html.Label("Text")
+        </th>
+        <th>
+            @Html.Label("CreationOn")
+        </th>
+        <th>
+            @Html.Label("Status")
+        </th>
+        <th>
+            @Html.Label("Author")
+        </th>
+        <th>
+            @Html.Label("Category")
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FIO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Text)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuthorId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Title)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.Id })  |
+            @if (User.IsInRole("worker"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+            }
+        </td>
+    </tr>
+}
+</table>
+<br />
+Страница @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) из @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", "Claims", new { page = page }))
